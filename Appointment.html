@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointments</title>
+  <link rel="stylesheet" href="styles.css">
+<script>
+        function validateDate() {
+            var doaInput = document.getElementById("doa");
+            var currentDate = new Date().toISOString().split('T')[0]; // Get current date in "yyyy-mm-dd" format
+            var selectedDate = doaInput.value;
+
+            if (selectedDate< currentDate) {
+                alert("Appointment cannot be in the past.");
+                doaInput.value = "";
+                doaInput.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+  <h1>Appointment Request form</h1>
+  <form class "input-container" action="HelloForm" method="get" onsubmit="return validateDate();">
+   
+    <label for="integerInput">Patient id</label><br>
+    <input type="number" id="integerInput" name="patient_id" pattern="[0-9]*" required><br>
+    <label for="integerInput">Service id</label><br>
+    <input type="number" id="integerInput" name="Service_id" pattern="[0-9]*" required><br>
+<!-- <label for="dropdown">Select a service:</label>
+        <select id="dropdown">
+            <option value="">Select a service...</option>
+            <% 
+                Map<Integer, String> servicesMap = DynamicDropdownData.getServicesMap();
+                for (Map.Entry<Integer, String> entry : servicesMap.entrySet()) {
+            %>
+            <option value="<%= entry.getKey() %>"><%= entry.getValue() %></option>
+            <% } %>
+        </select>-->
+    <label for="doa">Date for appointment</label><br>
+    <input type="date" id="doa" name="doa" required><br>
+    <input type="hidden" id="unique_id" value="5" name="uid">
+    <input type="submit" value="Submit">
+  </form>
+</body>
+
+</html>

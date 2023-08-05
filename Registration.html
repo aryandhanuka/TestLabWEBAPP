@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Information Form</title>
+  <link rel="stylesheet" href="styles.css">
+<script>     
+  function validateDate() {
+            var dobInput = document.getElementById("dob");
+            var currentDate = new Date().toISOString().split('T')[0]; // Get current date in "yyyy-mm-dd" format
+            var selectedDate = dobInput.value;
+
+            if (selectedDate > currentDate) {
+                alert("Date of Birth cannot be in the future.");
+                dobInput.value = "";
+                dobInput.focus();
+                return false;
+            }
+
+            return true;
+        }
+</script>
+</head>
+<body>
+  <h1>Personal Information</h1>
+  <form class "input-container" action="HelloForm" method="get" onsubmit="return validateDate();">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required><br>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required><br>
+
+    <label for="male">Male:</label>
+    <input type="radio" id="male" name="gender" value="male" required>
+
+    <label for="female">Female:</label>
+    <input type="radio" id="female" name="gender" value="female" required><br>
+    <input type="hidden" id="unique_id" name="uid" value="2">
+    <input type="submit" value="Submit">
+  </form>
+</body>
+
+</html>
